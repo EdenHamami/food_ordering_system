@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Dish</title>
+</head>
+<body>
+    <h2>Edit Dish</h2>
+    <form action="../public/dishes/edit_dish.php" method="POST">
+        <input type="hidden" id="id" name="id" value="<?php echo $_GET['id']; ?>">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<?php echo $_GET['name']; ?>" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><?php echo $_GET['description']; ?></textarea><br><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" value="<?php echo $_GET['price']; ?>" required><br><br>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" value="<?php echo $_GET['category']; ?>" required><br><br>
+
+        <input type="submit" value="Update Dish">
+    </form>
+</body>
+</html>

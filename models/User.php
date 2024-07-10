@@ -60,5 +60,58 @@ class User {
         }
         return false;
     }
+
+    // Read all users
+    public function readAll() {
+        // SQL query to select all users
+        $query = "SELECT * FROM " . $this->table;
+        
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Execute the query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // Update user
+    public function update() {
+        // SQL query to update a user
+        $query = "UPDATE " . $this->table . " SET username = :username, role = :role, email = :email WHERE id = :id";
+        
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Bind parameters to the query
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':role', $this->role);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute the query and return the result
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    // Delete user
+    public function delete() {
+        // SQL query to delete a user
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
+        
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID to the query
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute the query and return the result
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
 }
 ?>
